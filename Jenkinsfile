@@ -30,12 +30,12 @@ podTemplate(cloud: 'kubernetes', label: 'docker', yaml: template) {
 withCredentials([usernamePassword(credentialsId: 'docker-creds', passwordVariable: 'DOCKER_PSWD', usernameVariable: 'DOCKER_USER')]) {
 
     stage ("Docker build") {
-        sh "docker build -t ${DOCKER_USER}/apache:2.0 ."
+        sh "docker build -t ${DOCKER_USER}/apache:3.0 ."
     }
     stage ("Docker Push") {
         sh """
         docker login -u ${DOCKER_USER} -p ${DOCKER_PSWD}
-        docker push ${DOCKER_USER}/apache:2.0 
+        docker push ${DOCKER_USER}/apache:3.0 
         """
     }
         }
